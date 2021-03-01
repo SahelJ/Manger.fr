@@ -56,10 +56,8 @@ class Database{
         if(is_null($this->pdo)){
         
             $this->getConfig();
-            $this->pdo = new \PDO('mysql:host=' . $this->dbHost . ':' . $this->dbPort . 
-                                ';dbname=' . $this->dbName,
-                                $this->dbUser,
-                                $this->dbPassword);
+            $this->pdo = new \PDO('mysql:host=localhost;dbname=restau', "root", "");
+                                
             $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         }
     }
@@ -71,7 +69,7 @@ class Database{
         $config = Config::getInstance(ROOT . "/Config/DbConfig.php");
         $this->dbName = $config->get('dbName');
         $this->dbHost = $config->get('dbHost');
-        $this->dbPort = $config->get('dbPort');
+        // $this->dbPort = $config->get('dbPort');
         $this->dbUser = $config->get('dbUser');
         $this->dbPassword = $config->get('dbPassword');
     }

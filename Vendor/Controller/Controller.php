@@ -15,9 +15,11 @@ class Controller{
   
       ob_start();
       extract($params);
-      require ROOT . '/App/view/' . $pathView . '.php';
+      // require ROOT."App/Views/$pathView.php";
+      require ROOT . '/App/Views/' . $pathView . '.php';
       $content = ob_get_clean();
-      require ROOT . '/App/view/' . $this->default . '.php';
+      // require ROOT . '/App/Views/' . $this->default . '.php';
+      require ROOT."App/Views/default.php";
     }
   
   }

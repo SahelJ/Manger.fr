@@ -1,19 +1,24 @@
 <?php
 
-// use App\Controller\ConnectionController;
+use App\Controller\HomeController;
 
-// $connection = new ConnectionController();
+if (!empty($_GET["page"])) {
+    $page = $_GET["page"];
+    } else {
+        $page = "home";
+    }
 
-if (isset($_GET['page']) && $_GET['page'] == 'singup') {
-    $connection->signup();
-} elseif (isset($_GET['page']) && $_GET['page'] == 'login') {
-    $connection->login();
-} elseif (isset($_GET['page']) && $_GET['page'] == 'logout') {
-    $connection->logout();
-} elseif (isset($_GET['page']) && $_GET['page'] == 'removeUser') {
-    $connection->removeUser();
-}
-
+    switch ($page) {
+        case 'home':
+            $home = new HomeController();
+            $home->home();
+            break;
+        }
+// switch ($connection) {
+//     case 'home':
+        
+// }
+ 
 /**
  * Créer routing
  * Dans controller proposer des url de base.
