@@ -52,7 +52,7 @@ class Model extends Database{
     {
         $orderList = ' ORDER BY ';
         foreach ($order as $criteria => $value) {
-            $orderList .= $criteria . ' "' . $value . '", ';
+            $orderList .= $criteria . ' ' . $value . ', ';
         }
         return substr($orderList, 0, -2);
     }
@@ -107,6 +107,8 @@ class Model extends Database{
         $prepare = $this->pdo->prepare($statement);
         $prepare->execute($data);
     }
+
+    
 
     /**
      * Delete informations in Database

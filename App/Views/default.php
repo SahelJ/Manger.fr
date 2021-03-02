@@ -22,12 +22,21 @@
         </h1>
         <nav class="user-interface">
             <ul class="link-list">
+        <?php if(isset($_SESSION[""])): ?>
                 <li>
-                    <a class="button button-primary" href="/restaurant/index.php/user">Créer un compte</a>
+                    <a class="button button-primary" href="index.php?page=logout">Déconnexion</a>
+                </li>
+
+            <?php else: ?>
+
+                <li>
+                    <a class="button button-primary" href="index.php?page=registration">Créer un compte</a>
                 </li>
                 <li class="layout-right">
-                    <a class="button button-primary" href="/restaurant/index.php/user/login">Connexion</a>
+                    <a class="button button-primary" href="index.php?page=login">Connexion</a>
                 </li>
+
+            <?php endif; ?>
             </ul>
         </nav>
     </header>

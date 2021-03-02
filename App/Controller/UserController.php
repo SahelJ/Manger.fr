@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Model\UserModel;
 use Vendor\Controller\Controller;
+use Vendor\Model\DbInterface;
 
 class UserController extends Controller{
 
@@ -17,12 +18,12 @@ class UserController extends Controller{
             $user = $this->encodeChars($data);
             $user["Password"] = password_hash($data["Password"], PASSWORD_DEFAULT);
             $user["Role"] = json_encode(['user']);
-            $this->userModel->create($user);
+            $this->userModel->save($user);
 
             header("Location:index.php?page=login");
         }
 
-        $this->render("auth.signup");
+        $this->render("user.signup");
 
     }
 
@@ -41,7 +42,7 @@ class UserController extends Controller{
             }
             
         }
-        $this->render("auth.login");
+        $this->render("user.login");
 
     }
 
