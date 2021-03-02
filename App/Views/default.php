@@ -31,11 +31,13 @@
             </ul>
         </nav>
     </header>
+    
     <main>
         <div class="container">
             <?= $content ?>
         </div>
     </main>
+    
     <footer>
     <ul class="link-list">
         <li><img src="../img/payment/visa.png" alt="Visa"></li>

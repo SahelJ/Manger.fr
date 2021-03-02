@@ -14,10 +14,16 @@ if (!empty($_GET["page"])) {
             $home->home();
             break;
         }
-// switch ($connection) {
-//     case 'home':
-        
-// }
+
+
+
+
+
+
+
+
+
+
  
 /**
  * Créer routing
