@@ -21,7 +21,6 @@ a:hover
 body
 {
     /* structure */
-    border-top: 1.5em solid #EF4036;
     padding: 1em 5em;
 
     /* presentation */
@@ -91,8 +90,9 @@ h2
 
 html
 {
-    background: url('../images/background.png') repeat;
+    background: url('../img/background.png') repeat;
     overflow-y: scroll;
+    border-top: 1.5em solid #EF4036;
 }
 
 
