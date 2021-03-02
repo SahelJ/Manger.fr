@@ -1,5 +1,6 @@
 <?php
 
+use App\Controller\MealController;
 use App\Controller\HomeController;
 
 if (!empty($_GET["page"])) {
@@ -12,6 +13,14 @@ if (!empty($_GET["page"])) {
         case 'home':
             $home = new HomeController();
             $home->home();
+            break;
+        case 'categorie':
+            $meals = new MealController();
+            $meal->listMeal($_GET["id"]);
+            break;
+        case 'single':
+            $meal = new MealController();
+            $meal->single($_GET["id"]);
             break;
         }
 
