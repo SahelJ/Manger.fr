@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use App\Model\MealModel;
-
 use Vendor\Controller\Controller;
 
 // require_once permet de limiter le chargement d'une page à une seule fois. 

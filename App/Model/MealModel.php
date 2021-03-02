@@ -5,10 +5,10 @@ use Vendor\Model\Model;
 use Vendor\Model\Query;
 
 /**
- * @method ReadAll() | Récupère tous les articles
- * @method ReadOne(int $id) | Retourne un article en fonction de son id
- * @method delete(int $id) | Supprime un article en fonction de son id
- * @method create($data) | Enregistre un article dans la BDD
+ * @method ReadAll() | Récupère tous les meals
+ * @method ReadOne(int $id) | Retourne un meal en fonction de son id
+ * @method delete(int $id) | Supprime un meal en fonction de son id
+ * @method create($data) | Enregistre un meal dans la BDD
  */
 class MealModel extends Query{
 

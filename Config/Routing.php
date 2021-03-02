@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Controller\HomeController;
 use App\Controller\MealController;
 use App\Controller\UserController;
