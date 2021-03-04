@@ -3,13 +3,14 @@ namespace App\Controller;
 
 use App\Model\UserModel;
 use Vendor\Controller\Controller;
-
+use Vendor\Manager\PasswordEncoderManager;
 
 class UserController extends Controller{
 
     public function __construct()
     {
         $this->userModel = new UserModel();
+        $this->encoder = new PasswordEncoderManager();
     }
 
     public function signup($data)
@@ -35,29 +36,39 @@ class UserController extends Controller{
 
     }
 
-    public function login($data)
+    public function login()
     {
-        if (isset($data["Email"])) {
+        $error = "";
+        // Récupérer les informations avec $_POST
+        if(isset($_POST["Email"]) && isset($_POST["Password"])){
+            // Recherche un utilisateur dans la BDD
+            $user = $this->userModel->findOneBy(["Email" => htmlspecialchars($_POST["Email"])]);
+            // S'il y a un utilisateur je vérifie le password
+            if ($user) {
+                // Si ok, je le connecte
+                if($this->encoder->passwordVerify($_POST["Password"], $user->getPassword())){
+                    $_SESSION["user"]->FirstName = $user->getFirstName();
+                    $_SESSION["user"]->LastName = $user->getLastName();
+                    $_SESSION["user"]->Email = $user->getEmail();
 
-            $user = $this->userModel->getUserByEmail($data["Email"]);
-
-            if ($user && password_verify($data["Password"], $user->password)) {
-                $_SESSION["user"] = $user;
-                $_SESSION["user"]->role = json_decode($user->role);
-                header("Location:index.php");
+                    $this->redirectToRoute("home");
+                } else {
+                    $error = "Erreur de Password";
+                }
             } else {
-                $error = "Utilisateur ou mot de passe incorrect.";
+                $error = "Cet utilisateur n'existe pas.";
             }
-            
         }
-        $this->render("user.login");
 
+        $this->render("user.login", [
+            "error" => $error
+        ]);
     }
 
     public function logout()
     {
         session_destroy();
-        header("Location:index.php");
+        $this->redirectToRoute("home");
     }
 
 }

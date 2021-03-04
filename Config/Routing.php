@@ -31,6 +31,10 @@ if (!empty($_GET["page"])) {
                 $user = new UserController();
                 $user->login($_POST);
                 break;
+            case 'logout':
+                $controller = new UserController();
+                $controller->logout();
+                break;
         }
 
 

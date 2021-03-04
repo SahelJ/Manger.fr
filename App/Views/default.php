@@ -22,9 +22,14 @@
         </h1>
         <nav class="user-interface">
             <ul class="link-list">
-        <?php if(isset($_SESSION[""])): ?>
+        <?php if(array_key_exists("user", $_SESSION)): ?>
+        
                 <li>
-                    <a class="button button-primary" href="index.php?page=logout">Déconnexion</a>
+                    <a class="button button-primary" href="booking">Réserver</a>
+                    <a class="button button-primary" href="order">Commander</a>
+                </li>
+                <li class="layout-right">
+                    <a class="button button-primary" href="logout">Déconnexion</a>
                 </li>
 
             <?php else: ?>

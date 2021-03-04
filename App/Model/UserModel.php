@@ -1,8 +1,10 @@
 <?php
 namespace App\Model;
 
-use Vendor\Model\Model;
+
 use Vendor\Model\DbInterface;
+use Vendor\Model\Query;
+
 
 /**
  * @method ReadAll() | Récupère tous les utilisateurs
@@ -10,7 +12,7 @@ use Vendor\Model\DbInterface;
  * @method delete(int $id) | Supprime un utilisateur en fonction de son id
  * @method create($data) | Enregistre un utilisateur dans la BDD
  */
-class UserModel extends Model{
+class UserModel extends Query{
 
     /**
      * Nom de la table
@@ -25,37 +27,25 @@ class UserModel extends Model{
      * @param string $email
      * @return object
      */
-    public function getUserByEmail(string $email):object
+    public function getFirstName(string $firstname):object
     {
-        $statement = "SELECT * FROM user WHERE Email = '$email'";
+        $statement = "SELECT * FROM user WHERE  = '$firstname'";
         return $this->db->getData($statement, true);
     }
 
-    /**
-     * Récupère un utilisateur en fonction de son email
-     *
-     * @param string 
-     * @return object
-     */
-    function validText($errors,$value,$key,$min,$max,$empty = true){
-        if(!empty($value)) {
-            if(strlen($value) < $min) {
-            $errors[$key] = 'Min de '.$min.' caractères.';
-            } elseif(strlen($value) > $max) {
-            $errors[$key] = 'Max de '.$max.' caractères.';
-            }
-        } else {
-            if($empty) {
-            $errors[$key] = ' Veuillez renseigner ce champ.';
-            }
+    
+    public function saveUser($data)
+    {
+        try {
+            $save = new DbInterface();
+            $save->save($data, "user");
+            return true;
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
         }
-        return $errors;
-        }
+    }
 
-        public function save($user){
-            $signup = new DbInterface();
-            $signup -> save($user, 'user');
-        }
+
 
     // /**
     //  * Récupère un utilisateur en fonction de son email
