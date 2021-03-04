@@ -2,6 +2,7 @@
 namespace App\Model;
 
 use Vendor\Model\Model;
+use Vendor\Model\DbInterface;
 
 /**
  * @method ReadAll() | Récupère tous les utilisateurs
@@ -30,26 +31,31 @@ class UserModel extends Model{
         return $this->db->getData($statement, true);
     }
 
-    // /**
-    //  * Récupère un utilisateur en fonction de son email
-    //  *
-    //  * @param string 
-    //  * @return object
-    //  */
-    // function validText($errors,$value,$key,$min,$max,$empty = true){
-    //     if(!empty($value)) {
-    //         if(strlen($value) < $min) {
-    //         $errors[$key] = 'Min de '.$min.' caractères.';
-    //         } elseif(strlen($value) > $max) {
-    //         $errors[$key] = 'Max de '.$max.' caractères.';
-    //         }
-    //     } else {
-    //         if($empty) {
-    //         $errors[$key] = ' Veuillez renseigner ce champ.';
-    //         }
-    //     }
-    //     return $errors;
-    //     }
+    /**
+     * Récupère un utilisateur en fonction de son email
+     *
+     * @param string 
+     * @return object
+     */
+    function validText($errors,$value,$key,$min,$max,$empty = true){
+        if(!empty($value)) {
+            if(strlen($value) < $min) {
+            $errors[$key] = 'Min de '.$min.' caractères.';
+            } elseif(strlen($value) > $max) {
+            $errors[$key] = 'Max de '.$max.' caractères.';
+            }
+        } else {
+            if($empty) {
+            $errors[$key] = ' Veuillez renseigner ce champ.';
+            }
+        }
+        return $errors;
+        }
+
+        public function save($user){
+            $signup = new DbInterface();
+            $signup -> save($user, 'user');
+        }
 
     // /**
     //  * Récupère un utilisateur en fonction de son email

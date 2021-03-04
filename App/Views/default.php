@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manger.fr</title>
-    <link rel="stylesheet" href="../css/3wa-resto.css">
-    <link rel="stylesheet" href="../css/ui-button.css">
-    <link rel="stylesheet" href="../css/ui-form.css">
-    <link rel="stylesheet" href="../css/ui-table.css">
+    <link rel="stylesheet" href="asset/css/3wa-resto.css">
+    <link rel="stylesheet" href="asset/css/ui-button.css">
+    <link rel="stylesheet" href="asset/css/ui-form.css">
+    <link rel="stylesheet" href="asset/css/ui-table.css">
 
 </head>
 

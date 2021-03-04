@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Model\UserModel;
 use Vendor\Controller\Controller;
-use Vendor\Model\DbInterface;
+
 
 class UserController extends Controller{
 
@@ -14,15 +14,23 @@ class UserController extends Controller{
 
     public function signup($data)
     {
+        // var_dump($data);
         if (isset($data["Email"])) {
-            $user = $this->encodeChars($data);
             $user["Password"] = password_hash($data["Password"], PASSWORD_DEFAULT);
-            $user["Role"] = json_encode(['user']);
+            $user["FirstName"] = htmlspecialchars($data['FirstName']);
+            $user["LastName"] = htmlspecialchars($data['LastName']);
+            $user["BirthDate"] = htmlspecialchars($data['BirthDate']);
+            $user["Email"] = htmlspecialchars($data['Email']);
+            $user["Address"] = htmlspecialchars($data['Address']);
+            $user["City"] = htmlspecialchars($data['City']);
+            $user["ZipCode"] = htmlspecialchars($data['ZipCode']);
+            $user["Country"] = htmlspecialchars($data['Country']);
+            $user["Phone"] = htmlspecialchars($data['Phone']);
             $this->userModel->save($user);
 
             header("Location:index.php?page=login");
+            // var_dump($user);
         }
-
         $this->render("user.signup");
 
     }
